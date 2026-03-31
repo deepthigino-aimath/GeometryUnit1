@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Review Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" class="container">
+        <!-- Global Header (Hidden until start) -->
+        <div id="global-header" class="global-header hidden">
+            <div class="user-badge" style="display: flex; gap: 10px; align-items: center;">
+                <span>👤 <span id="global-student-name"></span></span>
+                <span class="time-badge">🕒 <span id="global-date-time"></span></span>
+                <button id="header-restart-btn" class="btn-secondary" style="padding: 4px 10px; font-size: 0.75rem; width: auto; text-transform: uppercase;">Start Over</button>
+            </div>
+            <div class="score-badge">
+                🏆 Score: <span id="global-total-score">0</span>
+            </div>
+        </div>
+        
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen active">
+            <div class="glass-card">
+                <h1 id="unit-name-start">Math Unit Review</h1>
+                <p>Test your knowledge and see how you score across all levels!</p>
+                <form id="start-form">
+                    <div class="input-group">
+                        <label for="student-name">Enter your Full Name</label>
+                        <input type="text" id="student-name" placeholder="John Doe" required autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn-primary">Start Quiz 🚀</button>
+                </form>
+            </div>
+            <div class="bg-shape shape-1"></div>
+            <div class="bg-shape shape-2"></div>
+        </div>
+
+        <!-- Board Screen -->
+        <div id="board-screen" class="screen">
+            <div class="glass-card" style="max-width: 1200px; width: 95%; margin: 0 auto; overflow-x: auto;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h2 id="unit-name-board">Math Unit Review</h2>
+                </div>
+                <div id="jeopardy-board" class="jeopardy-grid">
+                    <!-- Grid populated dynamically -->
+                </div>
+                <button id="finish-quiz-btn" class="btn-primary mt-4">Finish Quiz</button>
+            </div>
+            <div class="bg-shape shape-2"></div>
+            <div class="bg-shape shape-3"></div>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="screen">
+            <header class="quiz-header">
+                <button id="back-to-board-btn" class="btn-secondary back-btn">← Back to Board</button>
+                <div class="progress-bar">
+                    <div id="progress" class="progress-fill"></div>
+                </div>
+                <div class="quiz-info">
+                    <span id="question-counter">Question 1 of X</span>
+                    <span id="level-badge" class="badge">Level X</span>
+                </div>
+            </header>
+
+            <main class="quiz-main">
+                <div class="question-card glass-card">
+                    <div class="question-image-container">
+                        <img id="question-image" src="" alt="Math Problem" onclick="if(window.openImageModal) window.openImageModal(this.src);" style="cursor: zoom-in;">
+                    </div>
+                </div>
+                
+                <div class="answer-section">
+                    <!-- Dynamic area for multiple choice or fill-in-the-blank -->
+                    <div id="answer-container"></div>
+                    <button id="submit-answer-btn" class="btn-primary" disabled>Submit Answer</button>
+                </div>
+            </main>
+            
+            <!-- Feedback Overlay -->
+            <div id="feedback-overlay" class="feedback-overlay hidden">
+                <div class="feedback-content">
+                    <h2 id="feedback-title">Correct!</h2>
+                    <p id="feedback-message">Great job.</p>
+                    
+                    <div id="explanation-container" class="explanation-container hidden">
+                        <img id="explanation-image" src="" alt="Explanation" onclick="if(window.openImageModal) window.openImageModal(this.src);" style="cursor: zoom-in;">
+                        <p id="explanation-text"></p>
+                    </div>
+
+                    <button id="next-question-btn" class="btn-secondary">Return to Board ➔</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <div class="glass-card results-card">
+                <h2 id="unit-name-results" class="title-unit-results"></h2>
+                <h2>Quiz Complete, <span id="display-name"></span>! 🎉</h2>
+                
+                <div class="student-info">
+                    <p id="current-date-time"></p>
+                </div>
+
+                <div class="score-summary">
+                    <div class="total-score">
+                        <span class="score-label">Total Score</span>
+                        <h3 id="final-score">0%</h3>
+                    </div>
+                </div>
+                
+                <h3 class="breakdown-title">Level Breakdown</h3>
+                <div id="level-breakdown" class="level-breakdown">
+                    <!-- Populated via JS -->
+                </div>
+                
+                <button id="restart-btn" class="btn-secondary mt-4">Retake Quiz</button>
+            </div>
+            <div class="bg-shape shape-1"></div>
+            <div class="bg-shape shape-3"></div>
+        </div>
+
+    </div>
+
+    <!-- Image Modal for Maximize functionality -->
+    <div id="image-modal" class="image-modal hidden">
+        <span class="close-modal" id="close-modal-btn">&times;</span>
+        <img id="modal-img" src="" alt="Maximized Image">
+    </div>
+
+    <!-- Data and App Logic -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Teacher Tool: Obfuscator</h2>
+    <p>Type your answer to get the obfuscated string for <code>data.js</code>.</p>
+    <input type="text" id="raw" placeholder="e.g. A or 10.75" />
+    <button onclick="calc()">Generate</button>
+    <br><br>
+    <code id="out" style="background:#ddd; padding:10px; display:block;"></code>
+
+    <script>
+        const xorKey = "mathquiz";
+        function encryptString(str) {
+            let result = '';
+            for(let i=0; i<str.length; i++) {
+                result += String.fromCharCode(str.charCodeAt(i) ^ xorKey.charCodeAt(i % xorKey.length));
+            }
+            return btoa(result);
+        }
+        function calc() {
+            const v = document.getElementById('raw').value;
+            document.getElementById('out').innerText = "obfuscatedAnswer: '" + encryptString(v) + "'";
+        }
+    </script>
+</body>
+</html>
