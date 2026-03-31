@@ -1,2 +1,3 @@
 # GeometryUnit1
-Geometry Unit 1 Jeopardy style Quiz App
+Hillsborough County Publich School - Geometry Unit 1 Review
+Published by Deepthi Mathew - Jefferson High Math Department
